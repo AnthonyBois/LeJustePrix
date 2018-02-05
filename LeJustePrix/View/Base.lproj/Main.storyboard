@@ -215,7 +215,7 @@
         <scene sceneID="Oby-9E-AxC">
             <objects>
                 <viewController id="9XD-67-pkX" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ZtB-2e-LJg">
+                    <view key="view" contentMode="scaleToFill" id="ZtB-2e-LJg" customClass="QuestionView" customModule="LeJustePrix" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -289,6 +289,14 @@
                         </subviews>
                         <color key="backgroundColor" red="0.13345034419999999" green="0.1334508657" blue="0.13345207270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="ev6-JM-BSD"/>
+                        <connections>
+                            <outlet property="essai" destination="Ipd-Yf-p1V" id="a9J-c8-Ub3"/>
+                            <outlet property="image" destination="j8M-rX-TZ5" id="sht-ou-rY9"/>
+                            <outlet property="moins" destination="kyo-NY-5CZ" id="IVj-Fk-Fgr"/>
+                            <outlet property="niveau" destination="eSL-Eo-siJ" id="kCI-f4-nUu"/>
+                            <outlet property="plus" destination="UIN-ij-4bf" id="F8T-a2-6zr"/>
+                            <outlet property="question" destination="Fq8-pE-E6e" id="4s6-oU-WLT"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="searchDisplayController" destination="Ggj-3Y-fYI" id="7cI-sT-q13"/>
@@ -304,7 +312,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="274" y="-567"/>
+            <point key="canvasLocation" x="272.80000000000001" y="-567.16641679160421"/>
         </scene>
     </scenes>
     <resources>

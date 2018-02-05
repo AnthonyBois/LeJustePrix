@@ -65,8 +65,8 @@
 				F368941D2020521D00E7B5FE /* Model */,
 				F368941C2020521600E7B5FE /* View */,
 				F368941B2020520600E7B5FE /* Controller */,
-				F3689409202051D100E7B5FE /* AppDelegate.swift */,
 				F3689410202051D100E7B5FE /* Assets.xcassets */,
+				F3689409202051D100E7B5FE /* AppDelegate.swift */,
 				F3689412202051D100E7B5FE /* LaunchScreen.storyboard */,
 				F3689415202051D100E7B5FE /* Info.plist */,
 			);

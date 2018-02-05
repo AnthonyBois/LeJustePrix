@@ -12,5 +12,5 @@ struct Product{
     var id: Int = 0
     var libelle: String = ""
     var prix: Int = 0
-    var url: String = ""
+    var image: String = ""
 }

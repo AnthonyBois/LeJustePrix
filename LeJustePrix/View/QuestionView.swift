@@ -18,17 +18,45 @@ class QuestionView: UIView {
     }
     */
     @IBOutlet weak var question: UILabel!
-    
-    
-    /*public func changeLabelTitle(title: String)
-    {
-       // question?.text = title;
-       // print(question?.text)
-    }*/
-    
+    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var niveau: UILabel!
+    @IBOutlet weak var essai: UILabel!
+    @IBOutlet weak var plus: UILabel!
+    @IBOutlet weak var moins: UILabel!
+
     var title = "" {
         didSet {
             question.text = title
+        }
+    }
+    
+    var img = #imageLiteral(resourceName: "logo") {
+        didSet {
+            image.image = img
+        }
+    }
+    
+    var texteNiveau = "" {
+        didSet {
+            niveau.text = texteNiveau
+        }
+    }
+    
+    var texteEssai = "" {
+        didSet {
+            essai.text = texteEssai
+        }
+    }
+    
+    var textePlus = "" {
+        didSet {
+            plus.text = textePlus
+        }
+    }
+    
+    var texteMoins = "" {
+        didSet {
+            moins.text = texteMoins
         }
     }
     

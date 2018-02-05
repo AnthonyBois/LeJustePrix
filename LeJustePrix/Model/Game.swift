@@ -11,9 +11,7 @@ import Foundation
 class Game {
     
     var score = 0
-    
- /*   private var questions = [Product]()
-    private var currentIndex = 0*/
+    private var currentIndex = 0
     
     var state: State = .ongoing
     
@@ -21,20 +19,20 @@ class Game {
         case ongoing, over
     }
     
-    public func currentQuestion()-> String {
+    public func currentQuestion()-> Product {
         let questions = Question()
         let randomIndex = Int(arc4random_uniform(UInt32(questions.products.count)))
-        let question = (questions.products[randomIndex].libelle)
+        let question = (questions.products[randomIndex])
         return question
     }
     
-    /*func refresh() {
+    func refresh() {
         score = 0
         currentIndex = 0
         state = .over
     }
     
-    func answerCurrentQuestion(with answer: Bool) {
+    /*func answerCurrentQuestion(with answer: Bool) {
         if (currentQuestion.isCorrect && answer) || (!currentQuestion.isCorrect && !answer) {
             score += 1
         }
@@ -47,10 +45,10 @@ class Game {
         } else {
             finishGame()
         }
-    }
+    }*/
     
     private func finishGame() {
         state = .over
-    }*/
+    }
 }
 
