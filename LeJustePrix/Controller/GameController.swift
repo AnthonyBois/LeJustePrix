@@ -12,7 +12,7 @@ class GameController: UIViewController {
     var game = Game()
     private var level = 1
     private var nbrEssai = 1
-    
+    var score = 0
     var prix = 0
     
     @IBOutlet weak var question: UILabel!
@@ -28,9 +28,7 @@ class GameController: UIViewController {
     @IBOutlet weak var txtEssai: UILabel!
     
     @IBOutlet weak var saisie: UITextField!
-    
     @IBOutlet weak var aide: UILabel!
-    
     
     @IBOutlet weak var endPhrase: UILabel!
     @IBOutlet weak var endScore: UILabel!
@@ -38,101 +36,19 @@ class GameController: UIViewController {
     @IBOutlet weak var endButton: UIButton!
     @IBOutlet weak var endLogo: UIImageView!
     
-    
-    @IBAction func rejouer(_ sender: Any) {
-        level = 1
-        nbrEssai = 1
-        question.isHidden = false
-        image.isHidden = false
-        niveau.isHidden = false
-        essai.isHidden = false
-        plus.isHidden = false
-        moins.isHidden = false
-        saisie.isHidden = false
-        aide.isHidden = false
-        txtPlus.isHidden = false
-        txtMoins.isHidden = false
-        btnEnvoie.isHidden = false
-        txtEssai.isHidden = false
-        startNewGame()
-    }
-    
-    @IBAction func test(_ sender: UIButton) {
-        let entre = Int(saisie.text!)!
-        
-        if(game.answerCurrentQuestion(entre: entre, prix: prix) == 1){
-            level = level+1
-            aide.text = "tu gagnes !!"
-            if(level == 3){
-                aide.text = "FINI"
-                endImg.isHidden = false
-                endLogo.isHidden = false
-                endScore.isHidden = false
-                endPhrase.isHidden = false
-                endButton.isHidden = false
-                
-                question.isHidden = true
-                image.isHidden = true
-                niveau.isHidden = true
-                essai.isHidden = true
-                plus.isHidden = true
-                moins.isHidden = true
-                saisie.isHidden = true
-                aide.isHidden = true
-                txtPlus.isHidden = true
-                txtMoins.isHidden = true
-                btnEnvoie.isHidden = true
-                txtEssai.isHidden = true
-            }
-            else{
-                nextLevel()
-            }
-            
-        }
-        else if(game.answerCurrentQuestion(entre: entre, prix: prix) == 0){
-            aide.text = "C'est plus !"
-        }
-        else if(game.answerCurrentQuestion(entre: entre, prix: prix) == 2){
-            aide.text = "C'est moins !"
-        }
-        nbrEssai = nbrEssai + 1
-        if(nbrEssai==10){
-            if(level == 3){
-                aide.text = "FINI"
-                endImg.isHidden = false
-                endLogo.isHidden = false
-                endScore.isHidden = false
-                endPhrase.isHidden = false
-                endButton.isHidden = false
-                
-                question.isHidden = true
-                image.isHidden = true
-                niveau.isHidden = true
-                essai.isHidden = true
-                plus.isHidden = true
-                moins.isHidden = true
-                saisie.isHidden = true
-                aide.isHidden = true
-                txtPlus.isHidden = true
-                txtMoins.isHidden = true
-                btnEnvoie.isHidden = true
-                txtEssai.isHidden = true
-            }
-            else{
-                level = level+1
-                nextLevel()
-            }
-            
-        }
-        essai.text = String(nbrEssai)+"/10"
-        
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         startNewGame()
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+
     public func startNewGame() {
+        score = 0
         endImg.isHidden = true
         endLogo.isHidden = true
         endScore.isHidden = true
@@ -153,9 +69,42 @@ class GameController: UIViewController {
         
     }
     
-    public func nextLevel(){
-        nbrEssai = 0
+    @IBAction func test(_ sender: UIButton) {
+        let entre = Int(saisie.text!)!
         
+        if(game.answerCurrentQuestion(entre: entre, prix: prix) == 1){
+            score += prix
+            level = level+1
+            aide.text = "tu gagnes !!"
+            if(level == 11){
+                finPartie()
+            }
+            else{
+                nextLevel()
+            }
+        }
+            
+        else if(game.answerCurrentQuestion(entre: entre, prix: prix) == 0){
+            aide.text = "C'est plus !"
+        }
+        else if(game.answerCurrentQuestion(entre: entre, prix: prix) == 2){
+            aide.text = "C'est moins !"
+        }
+        nbrEssai = nbrEssai + 1
+        if(nbrEssai==11){
+            if(level == 10){
+                finPartie()
+            }
+            else{
+                level = level+1
+                nextLevel()
+            }
+        }
+        essai.text = String(nbrEssai)+"/10"
+    }
+    
+    public func nextLevel(){
+        nbrEssai = 1
         let produit = game.currentQuestion()
         prix = produit.prix
         let aideBas = (Double(prix)*1.8)
@@ -168,13 +117,48 @@ class GameController: UIViewController {
         moins.text = String(aideBas)+" €"
         
     }
-        
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func rejouer(_ sender: Any) {
+        level = 1
+        nbrEssai = 1
+        question.isHidden = false
+        image.isHidden = false
+        niveau.isHidden = false
+        essai.isHidden = false
+        plus.isHidden = false
+        moins.isHidden = false
+        saisie.isHidden = false
+        aide.isHidden = false
+        txtPlus.isHidden = false
+        txtMoins.isHidden = false
+        btnEnvoie.isHidden = false
+        txtEssai.isHidden = false
+        startNewGame()
     }
     
-
+    private func finPartie(){
+        aide.text = "FINI"
+        endImg.isHidden = false
+        endLogo.isHidden = false
+        endScore.isHidden = false
+        endPhrase.isHidden = false
+        endButton.isHidden = false
+        
+        question.isHidden = true
+        image.isHidden = true
+        niveau.isHidden = true
+        essai.isHidden = true
+        plus.isHidden = true
+        moins.isHidden = true
+        saisie.isHidden = true
+        aide.isHidden = true
+        txtPlus.isHidden = true
+        txtMoins.isHidden = true
+        btnEnvoie.isHidden = true
+        txtEssai.isHidden = true
+        
+        endScore.text = String(score)+" €"
+        
+    }
 
 }
