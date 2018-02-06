@@ -9,15 +9,15 @@
 import UIKit
 
 class ViewController: UIViewController {
-    var game = Game()
-    @IBOutlet weak var newGameButton: UIButton!
-    @IBOutlet weak var questionView: QuestionView!
+    //var game = Game()
+    //@IBOutlet weak var newGameButton: UIButton!
+    //@IBOutlet weak var questionView: QuestionView!
     
     @IBAction func didTapeNewGameButton() {
-        startNewGame()
+       // startNewGame()
     }
 
-   
+   /*
     
     private func startNewGame() {
         let questionView = QuestionView()
@@ -33,7 +33,7 @@ class ViewController: UIViewController {
     private func retry() {
         game.refresh()
     }
-    
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

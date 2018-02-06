@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F30E50E72029C06D00965DF9 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30E50E62029C06D00965DF9 /* GameController.swift */; };
 		F346166520230A7A003A73DE /* QuestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F346166420230A7A003A73DE /* QuestionView.swift */; };
 		F346166720231324003A73DE /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = F346166620231324003A73DE /* Game.swift */; };
 		F361762D20289A1600CB2715 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F361762C20289A1600CB2715 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F30E50E62029C06D00965DF9 /* GameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		F346166420230A7A003A73DE /* QuestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionView.swift; sourceTree = "<group>"; };
 		F346166620231324003A73DE /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		F361762C20289A1600CB2715 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				F361762C20289A1600CB2715 /* ViewController.swift */,
+				F30E50E62029C06D00965DF9 /* GameController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 				F368942A2020755800E7B5FE /* Question.swift in Sources */,
 				F36A2E6A20207DD70057B7BB /* Product.swift in Sources */,
 				F368940A202051D100E7B5FE /* AppDelegate.swift in Sources */,
+				F30E50E72029C06D00965DF9 /* GameController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +320,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = LeJustePrix/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Bois-Duval.LeJustePrix";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -330,6 +335,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = LeJustePrix/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Bois-Duval.LeJustePrix";
 				PRODUCT_NAME = "$(TARGET_NAME)";

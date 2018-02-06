@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+var title:String? = "123"
 class QuestionView: UIView {
 
     /*
@@ -24,13 +24,20 @@ class QuestionView: UIView {
     @IBOutlet weak var plus: UILabel!
     @IBOutlet weak var moins: UILabel!
 
-    var title = "" {
+    
+
+    public func changeTitle(title : String){
+        
+        question.text = title
+    }
+    
+     /*var title = "" {
         didSet {
-            question.text = title
+            question!.text = "title"
         }
     }
     
-    var img = #imageLiteral(resourceName: "logo") {
+   var img = #imageLiteral(resourceName: "logo") {
         didSet {
             image.image = img
         }
@@ -58,6 +65,6 @@ class QuestionView: UIView {
         didSet {
             moins.text = texteMoins
         }
-    }
+    }*/
     
 }
