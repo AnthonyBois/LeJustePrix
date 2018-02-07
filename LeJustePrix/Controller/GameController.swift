@@ -55,15 +55,15 @@ class GameController: UIViewController {
         endPhrase.isHidden = true
         endButton.isHidden = true
         
-        
         let produit = game.currentQuestion()
         prix = produit.prix
+        let img = produit.image
         let aideBas = (Double(prix)*1.8)
         let aideHaut = (Double(prix)*0.3)
         question.text = produit.libelle
-        image.image = #imageLiteral(resourceName: "logo")
+        image.image = #imageLiteral(resourceName: img)
         niveau.text = "Niveau 1"
-        essai.text = String(nbrEssai)+"/10"
+        essai.text = String(nbrEssai)+"/15"
         plus.text = String(aideHaut)+" €"
         moins.text = String(aideBas)+" €"
         
@@ -74,12 +74,12 @@ class GameController: UIViewController {
         
         if(game.answerCurrentQuestion(entre: entre, prix: prix) == 1){
             score += prix
-            level = level+1
             aide.text = "tu gagnes !!"
             if(level == 11){
                 finPartie()
             }
             else{
+                level = level+1
                 nextLevel()
             }
         }
@@ -91,7 +91,7 @@ class GameController: UIViewController {
             aide.text = "C'est moins !"
         }
         nbrEssai = nbrEssai + 1
-        if(nbrEssai==11){
+        if(nbrEssai==15){
             if(level == 10){
                 finPartie()
             }
@@ -100,19 +100,20 @@ class GameController: UIViewController {
                 nextLevel()
             }
         }
-        essai.text = String(nbrEssai)+"/10"
+        essai.text = String(nbrEssai)+"/15"
     }
     
     public func nextLevel(){
         nbrEssai = 1
         let produit = game.currentQuestion()
         prix = produit.prix
+        let img = produit.image
         let aideBas = (Double(prix)*1.8)
         let aideHaut = (Double(prix)*0.3)
         question.text = produit.libelle
-        image.image = #imageLiteral(resourceName: "logo")
+        image.image = #imageLiteral(resourceName: img)
         niveau.text = "Niveau "+String(level)
-        essai.text = String(nbrEssai)+"/10"
+        essai.text = String(nbrEssai)+"/15"
         plus.text = String(aideHaut)+" €"
         moins.text = String(aideBas)+" €"
         
