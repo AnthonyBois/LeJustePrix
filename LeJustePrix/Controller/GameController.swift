@@ -14,6 +14,7 @@ class GameController: UIViewController {
     private var nbrEssai = 1
     var score = 0
     var prix = 0
+    var essaiDispo = 0
     
     @IBOutlet weak var question: UILabel!
     @IBOutlet weak var image: UIImageView!
@@ -55,6 +56,92 @@ class GameController: UIViewController {
         endPhrase.isHidden = true
         endButton.isHidden = true
         
+        nextLevel()
+        
+    }
+    
+    @IBAction func test(_ sender: UIButton) {
+        if (saisie.text == "" || Int(saisie.text!) == nil){
+            aide.text = "entre un nombre"
+        }
+        else{
+            
+            let entre = Int(saisie.text!)!
+            if(level == 9){
+                if(entre == 9){
+                    score += prix
+                    finPartie()
+                }
+                else{
+                    finPartie()
+                }
+            }
+            else{
+                if(game.answerCurrentQuestion(entre: entre, prix: prix) == 1){
+                    score += prix
+                    aide.text = "tu gagnes !!"
+                    level = level+1
+                    nextLevel()
+                    
+                }
+                    
+                else if(game.answerCurrentQuestion(entre: entre, prix: prix) == 0){
+                    aide.text = "C'est plus !"
+                }
+                else if(game.answerCurrentQuestion(entre: entre, prix: prix) == 2){
+                    aide.text = "C'est moins !"
+                }
+                nbrEssai = nbrEssai + 1
+                if(nbrEssai==essaiDispo){
+                    level = level+1
+                    nextLevel()
+                    
+                }
+                essai.text = String(nbrEssai)+"/"+String(essaiDispo)
+            }
+            
+        }
+        
+        
+    }
+    
+    public func nextLevel(){
+        if(level == 1){ //Niveau 1 : 15 essais
+            essaiDispo = 15
+            niveauNbrEssais()
+        }
+        else if(level == 2){ //Niveau 2 : moins de 2 minutes
+            niveauTemps()
+        }
+        else if(level == 3){ //Niveau 3 : objet le plus cher
+            niveauTemps()
+        }
+        else if(level == 4){ //Niveau 4 : moins 15 essais
+            essaiDispo = 15
+            niveauNbrEssais()
+        }
+        else if(level == 5){ //Niveau 5 : moins de 1 minutes 30
+            niveauTemps()
+        }
+        else if(level == 6){ //Niveau 6 : quel objet appartien le prix
+            niveauTemps()
+        }
+        else if(level == 7){ //Niveau 7 : moins de 1 minute
+            niveauTemps()
+        }
+        else if(level == 8){  //Niveau 8 : moins de 10 essais
+            essaiDispo = 10
+            niveauNbrEssais()
+        }
+        else if(level == 9){  //Niveau 9 : 1 chiffre faux
+            essaiDispo = 10
+            niveauChiffreFaux()
+        }
+        
+    }
+    
+    private func niveauNbrEssais(){
+        nbrEssai = 0
         let produit = game.currentQuestion()
         prix = produit.prix
         let img = produit.image
@@ -62,49 +149,21 @@ class GameController: UIViewController {
         let aideHaut = (Double(prix)*0.3)
         question.text = produit.libelle
         image.image = #imageLiteral(resourceName: img)
-        niveau.text = "Niveau 1"
-        essai.text = String(nbrEssai)+"/15"
-        plus.text = String(aideHaut)+" €"
-        moins.text = String(aideBas)+" €"
+        niveau.text = "Niveau "+String(level)
+        essai.text = String(nbrEssai)+"/"+String(essaiDispo)
+        if(level == 1){
+            plus.text = String(aideHaut)+" €"
+            moins.text = String(aideBas)+" €"
+        }
+        else{
+            plus.text = ""
+            moins.text = ""
+        }
+        
         
     }
-    
-    @IBAction func test(_ sender: UIButton) {
-        let entre = Int(saisie.text!)!
-        
-        if(game.answerCurrentQuestion(entre: entre, prix: prix) == 1){
-            score += prix
-            aide.text = "tu gagnes !!"
-            if(level == 11){
-                finPartie()
-            }
-            else{
-                level = level+1
-                nextLevel()
-            }
-        }
-            
-        else if(game.answerCurrentQuestion(entre: entre, prix: prix) == 0){
-            aide.text = "C'est plus !"
-        }
-        else if(game.answerCurrentQuestion(entre: entre, prix: prix) == 2){
-            aide.text = "C'est moins !"
-        }
-        nbrEssai = nbrEssai + 1
-        if(nbrEssai==15){
-            if(level == 10){
-                finPartie()
-            }
-            else{
-                level = level+1
-                nextLevel()
-            }
-        }
-        essai.text = String(nbrEssai)+"/15"
-    }
-    
-    public func nextLevel(){
-        nbrEssai = 1
+    private func niveauTemps(){
+        nbrEssai = 0
         let produit = game.currentQuestion()
         prix = produit.prix
         let img = produit.image
@@ -114,9 +173,29 @@ class GameController: UIViewController {
         image.image = #imageLiteral(resourceName: img)
         niveau.text = "Niveau "+String(level)
         essai.text = String(nbrEssai)+"/15"
-        plus.text = String(aideHaut)+" €"
-        moins.text = String(aideBas)+" €"
-        
+        if(level == 2){
+            plus.text = String(aideHaut)+" €"
+            moins.text = String(aideBas)+" €"
+        }
+        else{
+            plus.text = ""
+            moins.text = ""
+        }
+    }
+    
+    private func niveauChiffreFaux(){
+        nbrEssai = 0
+        let produit = game.currentQuestion()
+        prix = produit.prix
+        let img = produit.image
+        question.text = produit.libelle
+        aide.text = String(prix)+"9 € - Quel chiffre du prix a été rajouté ?"
+        image.image = #imageLiteral(resourceName: img)
+        niveau.text = "Niveau "+String(level)
+        essai.isHidden = true
+        txtMoins.isHidden = true
+        txtPlus.isHidden = true
+        txtEssai.isHidden = true
     }
     
     @IBAction func rejouer(_ sender: Any) {
@@ -138,7 +217,7 @@ class GameController: UIViewController {
     }
     
     private func finPartie(){
-        aide.text = "FINI"
+        aide.text = ""
         endImg.isHidden = false
         endLogo.isHidden = false
         endScore.isHidden = false
