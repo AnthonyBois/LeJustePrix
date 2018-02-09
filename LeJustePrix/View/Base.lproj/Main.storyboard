@@ -338,6 +338,34 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKr-oi-zW6">
+                                <rect key="frame" x="310" y="89" width="10" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ct-eG-jit">
+                                <rect key="frame" x="40" y="89" width="8" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sQ-Ut-q7i">
+                                <rect key="frame" x="305" y="208" width="11" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9UG-If-C1A">
+                                <rect key="frame" x="40" y="208" width="11" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.13345034419999999" green="0.1334508657" blue="0.13345207270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="ev6-JM-BSD"/>
@@ -364,6 +392,10 @@
                         <outlet property="searchDisplayController" destination="Ggj-3Y-fYI" id="7cI-sT-q13"/>
                         <outlet property="suivant" destination="5p7-hj-I6Z" id="sdu-HM-oDa"/>
                         <outlet property="timeLabel" destination="FBm-Wd-Qgf" id="rL4-AG-HZ6"/>
+                        <outlet property="txt1" destination="2Ct-eG-jit" id="0gU-9g-hW3"/>
+                        <outlet property="txt2" destination="MKr-oi-zW6" id="yDQ-xG-qUv"/>
+                        <outlet property="txt3" destination="9UG-If-C1A" id="f3r-rz-cGL"/>
+                        <outlet property="txt4" destination="4sQ-Ut-q7i" id="X24-YW-ObL"/>
                         <outlet property="txtEssai" destination="tQv-ZO-QMm" id="8i8-On-ITn"/>
                         <outlet property="txtMoins" destination="In9-ck-F4d" id="wIf-np-Dc4"/>
                         <outlet property="txtPlus" destination="3zW-Yw-7fA" id="FXT-ji-q1U"/>

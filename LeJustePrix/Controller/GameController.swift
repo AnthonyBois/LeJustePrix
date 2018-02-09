@@ -41,6 +41,10 @@ class GameController: UIViewController {
     @IBOutlet weak var img2: UIImageView!
     @IBOutlet weak var img3: UIImageView!
     @IBOutlet weak var img4: UIImageView!
+    @IBOutlet weak var txt1: UILabel!
+    @IBOutlet weak var txt2: UILabel!
+    @IBOutlet weak var txt3: UILabel!
+    @IBOutlet weak var txt4: UILabel!
     
     @IBOutlet weak var suivant: UIButton!
     
@@ -65,8 +69,18 @@ class GameController: UIViewController {
     }
     
     @objc private func updateTimer(){
-        counter -= 0.1
-        timeLabel.text = String(format:"%.1f", counter)
+        if(counter<0.1){
+            timeLabel.text = "Fini..."
+            game.level = game.level+1
+            timer.invalidate()
+            isRunning = false
+            aide.text = "Le prix était de "+String(game.prix)+" €"       // on affiche un msg
+            ecranIntermediaire() //affiche ecran intermediaire
+        }
+        else{
+            counter -= 0.1
+            timeLabel.text = String(format:"%.1f", counter)
+        }
     }
     
 
@@ -84,6 +98,10 @@ class GameController: UIViewController {
         img2.isHidden = true
         img3.isHidden = true
         img4.isHidden = true
+        txt1.isHidden = true
+        txt2.isHidden = true
+        txt3.isHidden = true
+        txt4.isHidden = true
         
         suivant.isHidden = true // cache le bouton niveau suivant
         
@@ -122,6 +140,10 @@ class GameController: UIViewController {
                 img2.isHidden = true
                 img3.isHidden = true
                 img4.isHidden = true
+                txt1.isHidden = true
+                txt2.isHidden = true
+                txt3.isHidden = true
+                txt4.isHidden = true
                 image.image = #imageLiteral(resourceName: "portail") // img du produit
                 if(entre == 3){   //si l'utilisateur à juste :
                     game.score += 800                    // on incrémente le score
@@ -152,40 +174,45 @@ class GameController: UIViewController {
                 else if(game.answerCurrentQuestion(entre: entre, prix: game.prix) == 2){ //si le prix entré est plus grand on affiche un msg
                     aide.text = "C'est moins !"
                 }
-
-                if(counter < 0.0){ // si le nombre d'essais est égal au nombre d'essais dispo :
-                    game.level = game.level+1
-                    timer.invalidate()
-                    isRunning = false
-                    aide.text = "Le prix était de "+String(game.prix)+" €"       // on affiche un msg
-                    ecranIntermediaire() //affiche ecran intermediaire
-                }
-
             }
                 
             else{
-                if(game.answerCurrentQuestion(entre: entre, prix: game.prix) == 1){ //si le prix entré est juste :
-                    game.score += game.prix                    // on incrémente le score
-                    aide.text = "Tu as juste !"       // on affiche un msg
-                    game.level = game.level+1                  // on monte d'un niveau
-                    
-                    ecranIntermediaire() //affiche ecran intermediaire
-                    
-                }
-                    
-                else if(game.answerCurrentQuestion(entre: entre, prix: game.prix) == 0){ //si le prix entré est plus petit on affiche un msg
-                    aide.text = "C'est plus !"
-                }
-                else if(game.answerCurrentQuestion(entre: entre, prix: game.prix) == 2){ //si le prix entré est plus grand on affiche un msg
-                    aide.text = "C'est moins !"
-                }
-                game.nbrEssai = game.nbrEssai + 1 //au incrémente le nombre d'essais
                 if(game.nbrEssai==game.essaiDispo){ // si le nombre d'essais est égal au nombre d'essais dispo :
-                    game.level = game.level+1       // on monte d'un niveau
-                    aide.text = "Hey non, le prix était de "+String(game.prix)+" €"       // on affiche un msg
-                    ecranIntermediaire() //affiche ecran intermediaire
+                    if(game.answerCurrentQuestion(entre: entre, prix: game.prix) == 1){ //si le prix entré est juste :
+                        game.score += game.prix                    // on incrémente le score
+                        aide.text = "Tu as juste !"       // on affiche un msg
+                        game.level = game.level+1                  // on monte d'un niveau
+                        
+                        ecranIntermediaire() //affiche ecran intermediaire
+                    }
+                    else{
+                        game.level = game.level+1       // on monte d'un niveau
+                        aide.text = "Hey non, le prix était de "+String(game.prix)+" €"       // on affiche un msg
+                        ecranIntermediaire() //affiche ecran intermediaire
+                    }
+                    
                 }
-                essai.text = String(game.nbrEssai)+"/"+String(game.essaiDispo) // on affiche le nomber d'essais dispo
+                else{
+                    if(game.answerCurrentQuestion(entre: entre, prix: game.prix) == 1){ //si le prix entré est juste :
+                        game.score += game.prix                    // on incrémente le score
+                        aide.text = "Tu as juste !"       // on affiche un msg
+                        game.level = game.level+1                  // on monte d'un niveau
+                        
+                        ecranIntermediaire() //affiche ecran intermediaire
+                        
+                    }
+                        
+                    else if(game.answerCurrentQuestion(entre: entre, prix: game.prix) == 0){ //si le prix entré est plus petit on affiche un msg
+                        aide.text = "C'est plus !"
+                    }
+                    else if(game.answerCurrentQuestion(entre: entre, prix: game.prix) == 2){ //si le prix entré est plus grand on affiche un msg
+                        aide.text = "C'est moins !"
+                    }
+                    game.nbrEssai = game.nbrEssai + 1 //au incrémente le nombre d'essais
+                    
+                    essai.text = String(game.nbrEssai)+"/"+String(game.essaiDispo) // on affiche le nomber d'essais dispo
+                }
+                
             }
         }
     }
@@ -324,6 +351,10 @@ class GameController: UIViewController {
         img2.isHidden = false
         img3.isHidden = false
         img4.isHidden = false
+        txt1.isHidden = false
+        txt2.isHidden = false
+        txt3.isHidden = false
+        txt4.isHidden = false
         aide.text = "Quel est le produit le plus cher ?"
         niveau.text = "Niveau "+String(game.level) //affiche le niveau
     }
@@ -342,6 +373,10 @@ class GameController: UIViewController {
         img2.isHidden = false
         img3.isHidden = false
         img4.isHidden = false
+        txt1.isHidden = false
+        txt2.isHidden = false
+        txt3.isHidden = false
+        txt4.isHidden = false
         question.text = "800 €"
         aide.text = "À quel produit appartient le prix ?"
         niveau.text = "Niveau "+String(game.level) //affiche le niveau
