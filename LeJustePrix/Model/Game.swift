@@ -9,7 +9,7 @@
 import Foundation
 
 class Game {
-    var level = 1 //niveau
+    var level = 1  //niveau
     var nbrEssai = 1 // essais restants
     var score = 0 //score
     var prix = 0 //prix du produit

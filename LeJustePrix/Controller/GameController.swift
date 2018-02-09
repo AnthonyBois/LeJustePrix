@@ -15,7 +15,6 @@ class GameController: UIViewController {
     var counter = 0.0
     var isRunning = false
     
-    
     @IBOutlet weak var question: UILabel!
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var niveau: UILabel!
@@ -52,6 +51,8 @@ class GameController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        suivant.layer.cornerRadius = 13
+        endButton.layer.cornerRadius = 13
         timeLabel.text = "\(counter)"
         startNewGame() //au lancement de la vue "game" on lance une partie
     }
@@ -105,7 +106,7 @@ class GameController: UIViewController {
         
         suivant.isHidden = true // cache le bouton niveau suivant
         
-        nextLevel() //on commence une niveau
+        nextLevel() //on commence un niveau
     }
     
     
@@ -118,11 +119,13 @@ class GameController: UIViewController {
             if(game.level == 9){
                 if(entre == 9){  //si c'est le dernier niveau et que l'utilisateur à juste :
                     game.score += game.prix // on incrémente le score
-                    finPartie()   // on fini la partie
+                    aide.text = "Tu as juste !"
                 }
                 else{
-                    finPartie() // on fini la partie
+                    aide.text = "Hey non ! C'était le chiffre 9 !"
                 }
+                game.level=100
+                ecranIntermediaire() //affiche ecran intermediaire
             }
                 
                 
@@ -212,19 +215,25 @@ class GameController: UIViewController {
                 
             }
         }
+        saisie.text=""
     }
     
     @IBAction func changeLevel(_ sender: Any) { //au clic du bouton niveau suivant
-        plus.isHidden = false
-        moins.isHidden = false
-        saisie.isHidden = false
-        txtPlus.isHidden = false
-        txtMoins.isHidden = false
-        btnEnvoie.isHidden = false
-        txtEssai.isHidden = false
-        essai.isHidden = false
-        aide.text = "Quel est le prix du produit ?"
-        nextLevel()
+        if(game.level == 100){
+            finPartie()
+        }
+        else{
+            plus.isHidden = false
+            moins.isHidden = false
+            saisie.isHidden = false
+            txtPlus.isHidden = false
+            txtMoins.isHidden = false
+            btnEnvoie.isHidden = false
+            txtEssai.isHidden = false
+            essai.isHidden = false
+            aide.text = "Quel est le prix du produit ?"
+            nextLevel()
+        }
     }
     
     public func nextLevel(){
@@ -264,7 +273,6 @@ class GameController: UIViewController {
             niveauNbrEssais() // appel du niveau
         }
         else if(game.level == 9){  //Niveau 9 : 1 chiffre faux
-            game.essaiDispo = 10 // on initialise le nombre d'essais dispo à 10
             niveauChiffreFaux() // appel du niveau
         }
         
@@ -411,17 +419,12 @@ class GameController: UIViewController {
         image.isHidden = true
         niveau.isHidden = true
         essai.isHidden = true
-        aide.isHidden = true
-        plus.isHidden = true
-        moins.isHidden = true
         saisie.isHidden = true
-        txtPlus.isHidden = true
-        txtMoins.isHidden = true
         btnEnvoie.isHidden = true
         txtEssai.isHidden = true
+        suivant.isHidden = true
         
         endScore.text = String(game.score)+" €" // on affiche le score du joureur
-        
     }
     
     private func ecranIntermediaire(){
@@ -436,5 +439,4 @@ class GameController: UIViewController {
         txtEssai.isHidden = true
         suivant.isHidden = false // affiche le bouton niveau suivant
     }
-
 }
