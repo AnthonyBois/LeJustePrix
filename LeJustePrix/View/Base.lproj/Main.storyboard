@@ -253,6 +253,13 @@
                                     <action selector="test:" destination="9XD-67-pkX" eventType="touchUpInside" id="OEm-et-C8j"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAs-Ae-Tra">
+                                <rect key="frame" x="-7" y="306" width="375" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n6z-dw-mjD">
                                 <rect key="frame" x="209" y="536" width="166" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -324,11 +331,11 @@
                                 <rect key="frame" x="181" y="164" width="116" height="109"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAs-Ae-Tra">
-                                <rect key="frame" x="-7" y="306" width="375" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FBm-Wd-Qgf">
+                                <rect key="frame" x="165" y="443" width="58" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -356,6 +363,7 @@
                         <outlet property="saisie" destination="fKH-jJ-UpN" id="ZXh-g5-kgQ"/>
                         <outlet property="searchDisplayController" destination="Ggj-3Y-fYI" id="7cI-sT-q13"/>
                         <outlet property="suivant" destination="5p7-hj-I6Z" id="sdu-HM-oDa"/>
+                        <outlet property="timeLabel" destination="FBm-Wd-Qgf" id="rL4-AG-HZ6"/>
                         <outlet property="txtEssai" destination="tQv-ZO-QMm" id="8i8-On-ITn"/>
                         <outlet property="txtMoins" destination="In9-ck-F4d" id="wIf-np-Dc4"/>
                         <outlet property="txtPlus" destination="3zW-Yw-7fA" id="FXT-ji-q1U"/>

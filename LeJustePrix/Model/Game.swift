@@ -9,9 +9,6 @@
 import Foundation
 
 class Game {
-
-    private var currentIndex = 0 //
-    
     var level = 1 //niveau
     var nbrEssai = 1 // essais restants
     var score = 0 //score
@@ -41,5 +38,6 @@ class Game {
         }
         return (reponseJuste) //return 0 pour "moins", 1 pour "juste" et 2 pour "trop"
     }
+    
 }
 
