@@ -116,7 +116,7 @@ class GameController: UIViewController {
         else{
             let entre = Int(saisie.text!)! //convertir ce qui est entré en Int
             if(game.level == 9){
-                if(entre == 9){   //si c'est le dernier niveau et que l'utilisateur à juste :
+                if(entre == 9){  //si c'est le dernier niveau et que l'utilisateur à juste :
                     game.score += game.prix // on incrémente le score
                     finPartie()   // on fini la partie
                 }
@@ -181,15 +181,12 @@ class GameController: UIViewController {
                     if(game.answerCurrentQuestion(entre: entre, prix: game.prix) == 1){ //si le prix entré est juste :
                         game.score += game.prix                    // on incrémente le score
                         aide.text = "Tu as juste !"       // on affiche un msg
-                        game.level = game.level+1                  // on monte d'un niveau
-                        
-                        ecranIntermediaire() //affiche ecran intermediaire
                     }
                     else{
-                        game.level = game.level+1       // on monte d'un niveau
                         aide.text = "Hey non, le prix était de "+String(game.prix)+" €"       // on affiche un msg
-                        ecranIntermediaire() //affiche ecran intermediaire
                     }
+                    game.level = game.level+1                  // on monte d'un niveau
+                    ecranIntermediaire() //affiche ecran intermediaire
                     
                 }
                 else{
@@ -274,7 +271,7 @@ class GameController: UIViewController {
     }
     
     private func newProduct(){
-        game.nbrEssai = 0 //initialisation du nombre d'essais à 0
+        game.nbrEssai = 1 //initialisation du nombre d'essais à 0
         let produit = game.currentQuestion() // on recupere un produit
         game.prix = produit.prix // le prix du produit
         question.text = produit.libelle // nom du produit
