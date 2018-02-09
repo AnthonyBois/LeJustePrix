@@ -10,11 +10,7 @@ import UIKit
 
 class GameController: UIViewController {
     var game = Game()
-    private var level = 1
-    private var nbrEssai = 1
-    var score = 0
-    var prix = 0
-    var essaiDispo = 0
+    
     
     @IBOutlet weak var question: UILabel!
     @IBOutlet weak var image: UIImageView!
@@ -37,9 +33,16 @@ class GameController: UIViewController {
     @IBOutlet weak var endButton: UIButton!
     @IBOutlet weak var endLogo: UIImageView!
     
+    @IBOutlet weak var img1: UIImageView!
+    @IBOutlet weak var img2: UIImageView!
+    @IBOutlet weak var img3: UIImageView!
+    @IBOutlet weak var img4: UIImageView!
+    
+    @IBOutlet weak var suivant: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        startNewGame()
+        startNewGame() //au lancement de la vue "game" on lance une partie
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,55 +52,148 @@ class GameController: UIViewController {
     
 
     public func startNewGame() {
-        score = 0
+        game.score = 0 //initialisation du score à 0
+        // Cacher l'écran de fin
         endImg.isHidden = true
         endLogo.isHidden = true
         endScore.isHidden = true
         endPhrase.isHidden = true
         endButton.isHidden = true
         
-        nextLevel()
+        //cacher les images du niveau 6
+        img1.isHidden = true
+        img2.isHidden = true
+        img3.isHidden = true
+        img4.isHidden = true
+        
+        suivant.isHidden = true // cache le bouton niveau suivant
+        
+        nextLevel() //on commence une niveau
         
     }
     
-    @IBAction func test(_ sender: UIButton) {
-        if (saisie.text == "" || Int(saisie.text!) == nil){
+    @IBAction func test(_ sender: UIButton) { //au clic du boutton envoyer
+        if (saisie.text == "" || Int(saisie.text!) == nil){ //on vérifie si la saisie est bien un nombre
             aide.text = "entre un nombre"
         }
         else{
             
-            let entre = Int(saisie.text!)!
-            if(level == 9){
-                if(entre == 9){
-                    score += prix
-                    finPartie()
+            let entre = Int(saisie.text!)! //convertir ce qui est entré en Int
+            if(game.level == 9){
+                if(entre == 9){   //si c'est le dernier niveau et que l'utilisateur à juste :
+                    game.score += game.prix // on incrémente le score
+                    finPartie()   // on fini la partie
                 }
                 else{
-                    finPartie()
+                    finPartie() // on fini la partie
+                }
+            }
+            else if(game.level==3){
+                image.image = #imageLiteral(resourceName: "portail") // img du produit
+                if(entre == 3){   //si c'est le niveau 6 et que l'utilisateur à juste :
+                    // on affiche les éléments des autres niveaux
+                    essai.isHidden = false
+                    txtMoins.isHidden = false
+                    txtPlus.isHidden = false
+                    txtEssai.isHidden = false
+                    image.isHidden = false
+                    // on cache les 4 produits
+                    img1.isHidden = true
+                    img2.isHidden = true
+                    img3.isHidden = true
+                    img4.isHidden = true
+                    
+                    game.score += 800                    // on incrémente le score
+                    aide.text = "Tu as juste !"       // on affiche un msg
+                    game.level = game.level+1                  // on monte d'un niveau
+                    
+                    ecranIntermediaire() //affiche ecran intermediaire
+                }
+                else{
+                    // on affiche les éléments des autres niveaux
+                    essai.isHidden = false
+                    txtMoins.isHidden = false
+                    txtPlus.isHidden = false
+                    txtEssai.isHidden = false
+                    image.isHidden = false
+                    // on cache les 4 produits
+                    img1.isHidden = true
+                    img2.isHidden = true
+                    img3.isHidden = true
+                    img4.isHidden = true
+                    
+                    aide.text = "Hey non, c'était le portail !"       // on affiche un msg
+                    game.level = game.level+1                  // on monte d'un niveau
+                    
+                    ecranIntermediaire() //affiche ecran intermediaire
+                }
+            }
+            else if(game.level==6){
+                image.image = #imageLiteral(resourceName: "portail") // img du produit
+                if(entre == 3){   //si c'est le niveau 6 et que l'utilisateur à juste :
+                    // on affiche les éléments des autres niveaux
+                    essai.isHidden = false
+                    txtMoins.isHidden = false
+                    txtPlus.isHidden = false
+                    txtEssai.isHidden = false
+                    image.isHidden = false
+                    // on cache les 4 produits
+                    img1.isHidden = true
+                    img2.isHidden = true
+                    img3.isHidden = true
+                    img4.isHidden = true
+                    
+                    game.score += 800                    // on incrémente le score
+                    aide.text = "Tu as juste !"       // on affiche un msg
+                    game.level = game.level+1                  // on monte d'un niveau
+                    
+                    ecranIntermediaire() //affiche ecran intermediaire
+                }
+                else{
+                    // on affiche les éléments des autres niveaux
+                    essai.isHidden = false
+                    txtMoins.isHidden = false
+                    txtPlus.isHidden = false
+                    txtEssai.isHidden = false
+                    image.isHidden = false
+                    // on cache les 4 produits
+                    img1.isHidden = true
+                    img2.isHidden = true
+                    img3.isHidden = true
+                    img4.isHidden = true
+                    
+                    aide.text = "Hey non, c'était le portail !"       // on affiche un msg
+                    game.level = game.level+1                  // on monte d'un niveau
+                    
+                    ecranIntermediaire() //affiche ecran intermediaire
                 }
             }
             else{
-                if(game.answerCurrentQuestion(entre: entre, prix: prix) == 1){
-                    score += prix
-                    aide.text = "tu gagnes !!"
-                    level = level+1
-                    nextLevel()
+                if(game.answerCurrentQuestion(entre: entre, prix: game.prix) == 1){ //si le prix entré est juste :
+                    game.score += game.prix                    // on incrémente le score
+                    aide.text = "Tu as juste !"       // on affiche un msg
+                    game.level = game.level+1                  // on monte d'un niveau
+                    
+                    ecranIntermediaire() //affiche ecran intermediaire
                     
                 }
                     
-                else if(game.answerCurrentQuestion(entre: entre, prix: prix) == 0){
+                else if(game.answerCurrentQuestion(entre: entre, prix: game.prix) == 0){ //si le prix entré est plus petit on affiche un msg
                     aide.text = "C'est plus !"
                 }
-                else if(game.answerCurrentQuestion(entre: entre, prix: prix) == 2){
+                else if(game.answerCurrentQuestion(entre: entre, prix: game.prix) == 2){ //si le prix entré est plus grand on affiche un msg
                     aide.text = "C'est moins !"
                 }
-                nbrEssai = nbrEssai + 1
-                if(nbrEssai==essaiDispo){
-                    level = level+1
-                    nextLevel()
+                game.nbrEssai = game.nbrEssai + 1 //au incrémente le nombre d'essais
+                if(game.nbrEssai==game.essaiDispo){ // si le nombre d'essais est égal au nombre d'essais dispo :
+                    game.level = game.level+1       // on monte d'un niveau
+                    aide.text = "Hey non, le prix était de "+String(game.prix)+" €"       // on affiche un msg
+                    
+                    ecranIntermediaire() //affiche ecran intermediaire
+                    
                     
                 }
-                essai.text = String(nbrEssai)+"/"+String(essaiDispo)
+                essai.text = String(game.nbrEssai)+"/"+String(game.essaiDispo) // on affiche le nomber d'essais dispo
             }
             
         }
@@ -105,102 +201,157 @@ class GameController: UIViewController {
         
     }
     
+    @IBAction func changeLevel(_ sender: Any) { //au clic du bouton niveau suivant
+        plus.isHidden = false
+        moins.isHidden = false
+        saisie.isHidden = false
+        txtPlus.isHidden = false
+        txtMoins.isHidden = false
+        btnEnvoie.isHidden = false
+        txtEssai.isHidden = false
+        aide.text = "Quel est le prix du produit ?"
+        nextLevel()
+    }
+    
     public func nextLevel(){
-        if(level == 1){ //Niveau 1 : 15 essais
-            essaiDispo = 15
-            niveauNbrEssais()
+        suivant.isHidden = true // cache le bouton niveau suivant
+        if(game.level == 1){ //Niveau 1 : 15 essais
+            game.essaiDispo = 15 // on initialise le nombre d'essais dispo à 15
+            niveauNbrEssais() // appel du niveau
         }
-        else if(level == 2){ //Niveau 2 : moins de 2 minutes
-            niveauTemps()
+        else if(game.level == 2){ //Niveau 2 : moins de 2 minutes
+            niveauTemps() // appel du niveau
         }
-        else if(level == 3){ //Niveau 3 : objet le plus cher
-            niveauTemps()
+        else if(game.level == 3){ //Niveau 3 : objet le plus cher
+            niveauGrand() // appel du niveau
         }
-        else if(level == 4){ //Niveau 4 : moins 15 essais
-            essaiDispo = 15
-            niveauNbrEssais()
+        else if(game.level == 4){ //Niveau 4 : moins 15 essais
+            game.essaiDispo = 15 // on initialise le nombre d'essais dispo à 15
+            niveauNbrEssais() // appel du niveau
         }
-        else if(level == 5){ //Niveau 5 : moins de 1 minutes 30
-            niveauTemps()
+        else if(game.level == 5){ //Niveau 5 : moins de 1 minutes 30
+            niveauTemps() // appel du niveau
         }
-        else if(level == 6){ //Niveau 6 : quel objet appartien le prix
-            niveauTemps()
+        else if(game.level == 6){ //Niveau 6 : quel objet appartien le prix
+            niveauAppartien() // appel du niveau
         }
-        else if(level == 7){ //Niveau 7 : moins de 1 minute
-            niveauTemps()
+        else if(game.level == 7){ //Niveau 7 : moins de 1 minute
+            niveauTemps() // appel du niveau
         }
-        else if(level == 8){  //Niveau 8 : moins de 10 essais
-            essaiDispo = 10
-            niveauNbrEssais()
+        else if(game.level == 8){  //Niveau 8 : moins de 10 essais
+            game.essaiDispo = 10 // on initialise le nombre d'essais dispo à 10
+            niveauNbrEssais() // appel du niveau
         }
-        else if(level == 9){  //Niveau 9 : 1 chiffre faux
-            essaiDispo = 10
-            niveauChiffreFaux()
+        else if(game.level == 9){  //Niveau 9 : 1 chiffre faux
+            game.essaiDispo = 10 // on initialise le nombre d'essais dispo à 10
+            niveauChiffreFaux() // appel du niveau
         }
         
     }
     
     private func niveauNbrEssais(){
-        nbrEssai = 0
-        let produit = game.currentQuestion()
-        prix = produit.prix
-        let img = produit.image
-        let aideBas = (Double(prix)*1.8)
-        let aideHaut = (Double(prix)*0.3)
-        question.text = produit.libelle
-        image.image = #imageLiteral(resourceName: img)
-        niveau.text = "Niveau "+String(level)
-        essai.text = String(nbrEssai)+"/"+String(essaiDispo)
-        if(level == 1){
+        game.nbrEssai = 0 //initialisation du nombre d'essais à 0
+        let produit = game.currentQuestion() // on recupere un produit
+        game.prix = produit.prix // le prix du produit
+        let img = produit.image // l'image du produit
+        let aideBas = (Double(game.prix)*1.8) // aide
+        let aideHaut = (Double(game.prix)*0.3) // aide
+        question.text = produit.libelle // nom du produit
+        image.image = #imageLiteral(resourceName: img) // img du produit
+        niveau.text = "Niveau "+String(game.level) //affiche le niveau
+        essai.text = String(game.nbrEssai)+"/"+String(game.essaiDispo) // affiche nombre essais
+        // on affiche ou non les aides selon de niveau
+        if(game.level == 1){
             plus.text = String(aideHaut)+" €"
             moins.text = String(aideBas)+" €"
         }
         else{
-            plus.text = ""
-            moins.text = ""
+            plus.isHidden = true
+            moins.isHidden = true
+            txtPlus.isHidden = true
+            txtMoins.isHidden = true
         }
         
         
     }
     private func niveauTemps(){
-        nbrEssai = 0
-        let produit = game.currentQuestion()
-        prix = produit.prix
-        let img = produit.image
-        let aideBas = (Double(prix)*1.8)
-        let aideHaut = (Double(prix)*0.3)
-        question.text = produit.libelle
-        image.image = #imageLiteral(resourceName: img)
-        niveau.text = "Niveau "+String(level)
-        essai.text = String(nbrEssai)+"/15"
-        if(level == 2){
+        game.nbrEssai = 0 //initialisation du nombre d'essais à 0
+        let produit = game.currentQuestion() // on recupere un produit
+        game.prix = produit.prix // le prix du produit
+        let img = produit.image // l'image du produit
+        let aideBas = (Double(game.prix)*1.8) // aide
+        let aideHaut = (Double(game.prix)*0.3) // aide
+        question.text = produit.libelle // nom du produit
+        image.image = #imageLiteral(resourceName: img) // img du produit
+        niveau.text = "Niveau "+String(game.level) //affiche le niveau
+        essai.text = String(game.nbrEssai)+"/"+String(game.essaiDispo) // affiche nombre essais
+        // on affiche ou non les aides selon de niveau
+        if(game.level == 2){
             plus.text = String(aideHaut)+" €"
             moins.text = String(aideBas)+" €"
         }
         else{
-            plus.text = ""
-            moins.text = ""
+            plus.isHidden = true
+            moins.isHidden = true
+            txtPlus.isHidden = true
+            txtMoins.isHidden = true
         }
     }
     
     private func niveauChiffreFaux(){
-        nbrEssai = 0
-        let produit = game.currentQuestion()
-        prix = produit.prix
-        let img = produit.image
-        question.text = produit.libelle
-        aide.text = String(prix)+"9 € - Quel chiffre du prix a été rajouté ?"
-        image.image = #imageLiteral(resourceName: img)
-        niveau.text = "Niveau "+String(level)
+        game.nbrEssai = 0 //initialisation du nombre d'essais à 0
+        let produit = game.currentQuestion() // on recupere un produit
+        game.prix = produit.prix // le prix du produit
+        let img = produit.image // l'image du produit
+        question.text = produit.libelle // nom du produit
+        aide.text = String(game.prix)+"9 € - Quel chiffre du prix a été rajouté ?"
+        image.image = #imageLiteral(resourceName: img) // img du produit
+        niveau.text = "Niveau "+String(game.level) //affiche le niveau
+        //on cache ce qui est utile  pour les autres niveaux
         essai.isHidden = true
         txtMoins.isHidden = true
         txtPlus.isHidden = true
         txtEssai.isHidden = true
     }
     
-    @IBAction func rejouer(_ sender: Any) {
-        level = 1
-        nbrEssai = 1
+    private func niveauGrand(){
+        // onc cache les éléments des autres niveaux
+        essai.isHidden = true
+        txtMoins.isHidden = true
+        txtPlus.isHidden = true
+        txtEssai.isHidden = true
+        image.isHidden = true
+        question.text = ""
+        // on affiche les 4 produits
+        img1.isHidden = false
+        img2.isHidden = false
+        img3.isHidden = false
+        img4.isHidden = false
+        aide.text = "Quel est le produit le plus cher ?"
+        niveau.text = "Niveau "+String(game.level) //affiche le niveau
+    }
+    
+    private func niveauAppartien(){
+        // onc cache les éléments des autres niveaux
+        essai.isHidden = true
+        txtMoins.isHidden = true
+        txtPlus.isHidden = true
+        txtEssai.isHidden = true
+        image.isHidden = true
+        // on affiche les 4 produits
+        img1.isHidden = false
+        img2.isHidden = false
+        img3.isHidden = false
+        img4.isHidden = false
+        question.text = "800 €"
+        aide.text = "À quel produit appartient le prix ?"
+        niveau.text = "Niveau "+String(game.level) //affiche le niveau
+    }
+    
+    @IBAction func rejouer(_ sender: Any) { //si on clic sur rejouer
+        game.level = 1 //niveau à 1
+        game.nbrEssai = 1 //nbre essais à 1
+        // on affiche les éléments du jeu
         question.isHidden = false
         image.isHidden = false
         niveau.isHidden = false
@@ -213,32 +364,44 @@ class GameController: UIViewController {
         txtMoins.isHidden = false
         btnEnvoie.isHidden = false
         txtEssai.isHidden = false
-        startNewGame()
+        startNewGame() // on commence une nouvelle partie
     }
     
-    private func finPartie(){
+    private func finPartie(){ //ecran de fin de partie
+        //on affiche l'écran de fin
         aide.text = ""
         endImg.isHidden = false
         endLogo.isHidden = false
         endScore.isHidden = false
         endPhrase.isHidden = false
         endButton.isHidden = false
-        
+        // on cache le éléments du jeu
         question.isHidden = true
         image.isHidden = true
         niveau.isHidden = true
         essai.isHidden = true
+        aide.isHidden = true
         plus.isHidden = true
         moins.isHidden = true
         saisie.isHidden = true
-        aide.isHidden = true
         txtPlus.isHidden = true
         txtMoins.isHidden = true
         btnEnvoie.isHidden = true
         txtEssai.isHidden = true
         
-        endScore.text = String(score)+" €"
+        endScore.text = String(game.score)+" €" // on affiche le score du joureur
         
+    }
+    
+    private func ecranIntermediaire(){
+        plus.isHidden = true
+        moins.isHidden = true
+        saisie.isHidden = true
+        txtPlus.isHidden = true
+        txtMoins.isHidden = true
+        btnEnvoie.isHidden = true
+        txtEssai.isHidden = true
+        suivant.isHidden = false // affiche le bouton niveau suivant
     }
 
 }

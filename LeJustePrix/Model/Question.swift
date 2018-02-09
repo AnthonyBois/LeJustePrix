@@ -7,8 +7,8 @@
 //
 
 import Foundation
-struct Question{
-    let products = [
+struct Question{ //Struct avec toutes les questions
+    let products = [ //tableau de produits
         Product(id: 1, libelle: "TV LED incurvée UHD 138 cm", prix: 700, image: "tele"),
         Product(id: 2, libelle: "PlayStation4 500 Go", prix: 330, image: "ps4"),
         Product(id: 3, libelle: "Lave-linge", prix: 450, image: "lave-linge"),

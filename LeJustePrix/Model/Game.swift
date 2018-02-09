@@ -10,14 +10,15 @@ import Foundation
 
 class Game {
 
-    private var currentIndex = 0
+    private var currentIndex = 0 //
     
-    var state: State = .ongoing
-    
-    enum State {
-        case ongoing, over
-    }
-    
+    var level = 1 //niveau
+    var nbrEssai = 1 // essais restants
+    var score = 0 //score
+    var prix = 0 //prix du produit
+    var essaiDispo = 0 //essais dispo pour la partie
+
+    //fonction recuppere une question au hasard
     public func currentQuestion()-> Product {
         let questions = Question()
         let randomIndex = Int(arc4random_uniform(UInt32(questions.products.count)))
@@ -25,7 +26,7 @@ class Game {
         return question
     }
 
-    
+    //fonction qui véréfie si la réponse est juste
     func answerCurrentQuestion(entre:Int, prix:Int)-> Int {
         var reponseJuste = 0
         if (entre > prix) {
@@ -38,7 +39,7 @@ class Game {
         else{
             reponseJuste=0
         }
-        return (reponseJuste)
+        return (reponseJuste) //return 0 pour "moins", 1 pour "juste" et 2 pour "trop"
     }
 }
 

@@ -8,6 +8,7 @@
 
 import Foundation
 
+//structure des produits
 struct Product{
     var id: Int = 0
     var libelle: String = ""

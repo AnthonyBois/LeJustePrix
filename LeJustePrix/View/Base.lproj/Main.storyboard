@@ -253,13 +253,6 @@
                                     <action selector="test:" destination="9XD-67-pkX" eventType="touchUpInside" id="OEm-et-C8j"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAs-Ae-Tra">
-                                <rect key="frame" x="-7" y="323" width="375" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n6z-dw-mjD">
                                 <rect key="frame" x="209" y="536" width="166" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -271,6 +264,19 @@
                                 </state>
                                 <connections>
                                     <action selector="rejouer:" destination="9XD-67-pkX" eventType="touchUpInside" id="dLu-cZ-nYh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5p7-hj-I6Z">
+                                <rect key="frame" x="209" y="480" width="204" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.147677213" green="0.31897097829999999" blue="0.83536601070000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <inset key="contentEdgeInsets" minX="27" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Niveau suivant">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="changeLevel:" destination="9XD-67-pkX" eventType="touchUpInside" id="Rsc-Rc-MVB"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="x5G-jd-bzt">
@@ -302,6 +308,29 @@
                                 <rect key="frame" x="0.0" y="366" width="240" height="301"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="spot" translatesAutoresizingMaskIntoConstraints="NO" id="Efh-ts-Fmt">
+                                <rect key="frame" x="58" y="43" width="115" height="113"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="tele" translatesAutoresizingMaskIntoConstraints="NO" id="5MH-L8-2rw">
+                                <rect key="frame" x="181" y="43" width="120" height="113"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="portail" translatesAutoresizingMaskIntoConstraints="NO" id="nLe-m5-HwI">
+                                <rect key="frame" x="58" y="164" width="115" height="109"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="switch" translatesAutoresizingMaskIntoConstraints="NO" id="LOO-VK-wov">
+                                <rect key="frame" x="181" y="164" width="116" height="109"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAs-Ae-Tra">
+                                <rect key="frame" x="-7" y="306" width="375" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.13345034419999999" green="0.1334508657" blue="0.13345207270000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="ev6-JM-BSD"/>
@@ -316,12 +345,17 @@
                         <outlet property="endScore" destination="fjc-sg-0Lf" id="yK2-33-yme"/>
                         <outlet property="essai" destination="Ipd-Yf-p1V" id="lI6-8S-q3d"/>
                         <outlet property="image" destination="j8M-rX-TZ5" id="XLU-G5-SXT"/>
+                        <outlet property="img1" destination="Efh-ts-Fmt" id="EWJ-OW-5Zk"/>
+                        <outlet property="img2" destination="5MH-L8-2rw" id="Z3l-an-r0T"/>
+                        <outlet property="img3" destination="nLe-m5-HwI" id="Nra-pF-dfr"/>
+                        <outlet property="img4" destination="LOO-VK-wov" id="358-dR-sKi"/>
                         <outlet property="moins" destination="kyo-NY-5CZ" id="7se-be-Em9"/>
                         <outlet property="niveau" destination="eSL-Eo-siJ" id="qql-MO-CrU"/>
                         <outlet property="plus" destination="UIN-ij-4bf" id="n07-2t-oVg"/>
                         <outlet property="question" destination="2Jc-rE-a3O" id="7nS-in-baq"/>
                         <outlet property="saisie" destination="fKH-jJ-UpN" id="ZXh-g5-kgQ"/>
                         <outlet property="searchDisplayController" destination="Ggj-3Y-fYI" id="7cI-sT-q13"/>
+                        <outlet property="suivant" destination="5p7-hj-I6Z" id="sdu-HM-oDa"/>
                         <outlet property="txtEssai" destination="tQv-ZO-QMm" id="8i8-On-ITn"/>
                         <outlet property="txtMoins" destination="In9-ck-F4d" id="wIf-np-Dc4"/>
                         <outlet property="txtPlus" destination="3zW-Yw-7fA" id="FXT-ji-q1U"/>
@@ -343,6 +377,10 @@
     <resources>
         <image name="lagaff" width="162" height="194"/>
         <image name="logo" width="156" height="101"/>
+        <image name="portail" width="700" height="700"/>
+        <image name="spot" width="700" height="700"/>
+        <image name="switch" width="700" height="700"/>
+        <image name="tele" width="700" height="700"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="bDX-JK-uFa"/>
